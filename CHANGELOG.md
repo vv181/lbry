@@ -19,7 +19,7 @@ at anytime.
   * Renamed `lbrynet.lbrynet_daemon` to `lbrynet.daemon`
   * Initialize lbrynet settings when configuring an api client if they are not set yet
   * Updated lbryum imports
-  *
+  * claim_show API command no longer takes name as argument
 
 ### Fixed
   * Fixed some log messages throwing exceptions
@@ -27,6 +27,7 @@ at anytime.
   * Fixed claim_new_support docstrings
   * Fixed BlobManager causing functional tests to fail, removed its unneeded manage() loop
   * Increased max_key_fee
+  * fixed inconsistencies in claim_show API command output
 
 ### Deprecated
   *
