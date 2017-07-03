@@ -796,6 +796,7 @@ class Wallet(object):
         check_cache = kwargs.get('check_cache', True)
         page = kwargs.get('page', 0)
         page_size = kwargs.get('page_size', 10)
+        uris = [str(uri) for uri in uris]
 
         result = {}
         needed = []

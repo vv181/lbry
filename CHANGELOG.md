@@ -18,6 +18,7 @@ at anytime.
 
 ### Fixed
   * Fixed timeout behaviour when calling API command get
+  * Fix error when resolving an integer
   *
 
 ### Deprecated
