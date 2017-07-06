@@ -69,17 +69,18 @@ def _win_path_to_bytes(path):
 def _get_old_directories(platform):
     dirs = {}
     if platform == WINDOWS:
-        dirs['data'] = user_data_dir('lbrynet', roaming=True)
-        dirs['lbryum'] = user_data_dir('lbryum', roaming=True)
+        appdata = get_path(FOLDERID.RoamingAppData, UserHandle.current)
+        dirs['data'] = os.path.join(appdata, 'lbrynet')
+        dirs['lbryum'] = os.path.join(appdata, 'lbryum')
         dirs['download'] = get_path(FOLDERID.Downloads, UserHandle.current)
     elif platform == DARWIN:
         dirs['data'] = user_data_dir('LBRY')
         dirs['lbryum'] = os.path.expanduser('~/.lbryum')
         dirs['download'] = os.path.expanduser('~/Downloads')
     elif platform == LINUX:
-        dirs['data'] = os.path.expanduser('~/.lbrynet')
-        dirs['lbryum'] = os.path.expanduser('~/.lbryum')
-        dirs['download'] = os.path.expanduser('~/Downloads')
+        dirs['data'] = os.path.join(os.path.expanduser('~'), '~/.lbrynet')
+        dirs['lbryum'] = os.path.join(os.path.expanduser('~'), '~/.lbryum')
+        dirs['download'] = os.path.join(os.path.expanduser('~'), 'Downloads')
     else:
         raise ValueError('unknown platform value')
     return dirs
@@ -116,8 +117,8 @@ if 'darwin' in sys.platform:
     dirs = _get_old_directories(DARWIN)
 elif 'win' in sys.platform:
     platform = WINDOWS
-    if os.path.isdir(user_data_dir('lbryum', roaming=True)) and \
-       os.path.isdir(user_data_dir('lbrynet', roaming=True)):
+    if os.path.isdir(_get_old_directories(WINDOWS)['data']) or \
+       os.path.isdir(_get_old_directories(WINDOWS)['lbryum']):
         dirs = _get_old_directories(WINDOWS)
     else:
         dirs = _get_new_directories(WINDOWS)
@@ -126,8 +127,8 @@ elif 'win' in sys.platform:
     dirs['download'] = _win_path_to_bytes(dirs['download'])
 else:
     platform = LINUX
-    if os.path.isdir(os.path.expanduser('~/.lbrynet')) and \
-       os.path.isdir(os.path.expanduser('~/.lbryum')):
+    if os.path.isdir(_get_old_directories(LINUX)['data']) or \
+       os.path.isdir(_get_old_directories(LINUX)['lbryum']):
         dirs = _get_old_directories(LINUX)
     else:
         dirs = _get_new_directories(LINUX)

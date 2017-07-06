@@ -13,11 +13,16 @@ at anytime.
   *
 
 ### Changed
-  *
+  * Linux default downloads folder changed from `~/Downloads` to `XDG_DOWNLOAD_DIR`
+  * Linux folders moved from the home directory to `~/.local/share/lbry`
+  * Windows folders moved from `%AppData%/Roaming` to `%AppData%/Local/lbry`
   *
 
 ### Fixed
   * peer_port is settable using `settings_set`
+  * Fixed timeout behaviour when calling API command get
+  * Fix XDG compliance on Linux
+  *
 
 ### Deprecated
   *
