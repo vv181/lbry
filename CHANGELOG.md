@@ -17,7 +17,7 @@ at anytime.
   *
 
 ### Fixed
-  *
+  * Fix for https://github.com/lbryio/lbry/issues/750
   *
 
 ### Deprecated
