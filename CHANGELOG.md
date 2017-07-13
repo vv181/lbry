@@ -9,15 +9,16 @@ at anytime.
 
 ## [Unreleased]
 ### Added
-  * Add link to instructions on how to change the default peer port
-  *
+  * Added link to instructions on how to change the default peer port
+  * Added `peer_port` to settings that are configurable with `settings_set`
 
 ### Changed
-  *
+  * 
   *
 
 ### Fixed
-  * peer_port is settable using `settings_set`
+  * Fixed daemon process hanging when started without an internet connection
+  * Fixed https://github.com/lbryio/lbry/issues/774
 
 ### Deprecated
   *
